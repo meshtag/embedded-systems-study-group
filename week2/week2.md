@@ -334,11 +334,11 @@ clean:
 
 #### Ninja 
 
-Ninja is another tool used for generating executable files according to the rules defined in corresponding Cmake file.The main purpose behind the creation of 
+Ninja is another tool used for generating executable files according to the rules defined in corresponding Cmake file. The main purpose behind the creation of 
 Ninja is to increase the speed and improve change monitoring methods while generating executable files from large projects(It is reported to be much faster than 
 good old Make for many common scenarios). At present, it is used by many popular open source projects such as Google Chrome, LLVM, Android, etc. 
 
-##### Specifications : 
+##### Basic specifications : 
 
 Ninja evaluates a graph of dependencies between files, and runs whichever commands are necessary to make your build target up to date as determined by file 
 modification times. Conceptually, build statements describe the dependency graph of your project, while rule statements describe how to generate the files along a given edge of the graph.
@@ -352,7 +352,7 @@ rule cc
 
 build foo.o: cc foo.c
 ```
- - **Variables : **
+ - Variables : 
 
 Despite the non-goal of being convenient to write by hand, to keep build files readable (debuggable), Ninja supports declaring shorter reusable names for strings. 
 A declaration like the following
@@ -366,7 +366,7 @@ rule cc
 ```
 Variables can also be referenced using curly braces like ${in}.
 
- - **Rules : **
+ - Rules : 
 
 Rules declare a short name for a command line. They begin with a line consisting of the rule keyword and a name for the rule. Then follows an indented set of 
 variable = value lines.
@@ -374,7 +374,7 @@ variable = value lines.
 The basic example above declares a new rule named cc, along with the command to run. In the context of a rule, the command variable defines the command to run, 
 $in expands to the list of input files (foo.c), and $out to the output files (foo.o) for the command.
 
- - **Build statements : **
+ - Build statements : 
 
 Build statements declare a relationship between input and output files. They begin with the build keyword, and have the format build outputs: rulename inputs. 
 Such a declaration says that all of the output files are derived from the input files. When the output files are missing or when the inputs change, Ninja will run 
